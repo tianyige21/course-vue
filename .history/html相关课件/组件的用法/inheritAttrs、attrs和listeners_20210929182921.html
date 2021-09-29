@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>父子组件通信</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <father-component :foo="foo" :bar="bar" @event="reciveChildFunc">
+    </father-component>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.5.10/vue.min.js"></script>
+  <script type="text/javascript">
+
+    // 这是祖先组件
+    new Vue({
+      el: '#app',
+      components: {
+        // ***********
+        // 这是父组件
+        fatherComponent: {
+          // $attrs 获取到 props 以外的属性,即：html中 bar属性
+          template: `
+          <div>
+            <div>attrs: {{$attrs}}</div>
+            <div>foo: {{foo}}</div>
+          </div>
+        `,
+          name: 'father-component',
+          data() {
+            return {
+
+            }
+          },
+          inheritAttrs: false,
+          props: {
+            foo: {
+              type: String,
+              default: ''
+            }
+          },
+          // 这是子组件
+          components: {
+            'child-component': {
+              template:  
+              `<div>
+                  <div>bar: {{bar}}</div>
+                  <button @click="childFunc">点击子节点</button>
+               </div>`,
+              data() {
+                return {
+
+                }
+              },
+              props: {
+                bar: {
+                  type: String,
+                  default: ''
+                }
+              },
+              methods: {
+                childFunc() {
+                  this.$emit('event', '32');
+                }
+              }
+            }
+          },
+        }
+        // ***********
+      },
+      data() {
+        return {
+          foo: 'hello world',
+          bar: 'kongzhi'
+        }
+      },
+      methods: {
+        reciveChildFunc(value) {
+          console.log('接收孙子组件的数据' + value);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>

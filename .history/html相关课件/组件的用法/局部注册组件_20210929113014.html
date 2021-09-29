@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>zvm测试</title>
+</head>
+
+<body>
+  <div id="app">
+    <child-component></child-component>
+  </div>
+  <div id="app2">
+    <child-component></child-component>
+  </div>
+</body>
+<script src="https://cdn.bootcss.com/vue/2.5.10/vue.min.js"></script>
+
+
+<script type="text/javascript">
+  var child = {
+    template: "<h1 @click="clickTest">{{msg}}</h1>",
+    data: () => {
+      return {
+        msg: '我是局部组件112'
+      }
+    },
+    methend:{
+      clickTest(){
+        console.log('子组件点击事件！');
+      }
+    }
+
+  };
+  new Vue({
+    el: '#app',
+    components: {
+      "child-component": child
+    }
+  });
+  new Vue({
+    el: '#app2'
+  })
+</script>
+
+</script>
+
+</html>

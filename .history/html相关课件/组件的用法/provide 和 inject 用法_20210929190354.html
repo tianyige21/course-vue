@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>父子组件通信</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <parent-component></parent-component>
+  </div>
+  <script type="text/javascript">
+    // 定义一个子组件
+    var childComponent = Vue.extend({
+      template: '<div>子组件获取祖先组件的age值为: {{age2}}</div>',
+      inject: ['age'],
+      data() {
+        return {
+          age2: this.age
+        }
+      }
+    });
+    // 定义一个父组件
+    var str = `<div>
+                <div>父组件获取name属性为: {{name2}}</div>
+                <child-component></child-component>
+              </div>`;
+    var parentComponent = Vue.extend({
+      template: str,
+      inject: ['name'],
+      data() {
+        return {
+          name2: this.name
+        }
+      },
+      components: {
+        childComponent
+      }
+    });
+    // 初始化祖先组件
+    new Vue({
+      el: '#app',
+      components: {
+        parentComponent
+      },
+      // 祖先组件提供所有要传递的属性变量给子组件
+      provide: {
+        name: 'kongzhi',
+        age: 31,
+        marriage: 'single'
+      },
+      data() {
+        return {
+          
+        }
+      },
+      methods: {
+        
+      }
+    });
+  </script>
+</body>
+</html>

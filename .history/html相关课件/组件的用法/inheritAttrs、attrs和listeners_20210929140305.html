@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>父子组件通信</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <father-component :foo="foo" :bar="bar" @event="reciveChildFunc">
+    </father-component>
+  </div>
+  <script src="https://cdn.bootcss.com/vue/2.5.10/vue.min.js"></script>
+  <script type="text/javascript">
+    // 这是父组件
+
+    // 这是祖先组件
+    new Vue({
+      el: '#app',
+      components: {
+        // ***********
+        fatherComponent: {
+          template: `
+          <div>
+            <div>attrs: {{$attrs}}</div>
+            <div>foo: {{foo}}</div>
+          </div>
+        `,
+          name: 'father-component',
+          data() {
+            return {
+
+            }
+          },
+          props: {
+            foo: {
+              type: String,
+              default: ''
+            }
+          },
+          // components: {
+          // },
+        }
+        // ***********
+      },
+      data() {
+        return {
+          foo: 'hello world',
+          bar: 'kongzhi'
+        }
+      },
+      methods: {
+        reciveChildFunc(value) {
+          console.log('接收孙子组件的数据' + value);
+        }
+      }
+    });
+  </script>
+</body>
+
+</html>
