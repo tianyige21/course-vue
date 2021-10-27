@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>1.JavaScrpit简介</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <child-component ref="child"></child-component>
+  </div>
+  <script type="text/javascript">
+/***-----------------------------------------------------------------------------***/
+    /**
+     *  1、 基本用法
+     * */
+
+
+    // let sy = Symbol("KK");
+    // console.log(sy);   // Symbol(KK)
+    // typeof (sy);        // "symbol"
+    // console.log(typeof (sy));
+
+    // // 相同参数 Symbol() 返回的值不相等
+    // let sy1 = Symbol("kk");
+    // sy === sy1;       // false
+
+/***-----------------------------------------------------------------------------***/
+
+
+    /**
+     * 2、使用场景
+    */
+    // 作为属性名
+
+    let sy2 = Symbol("key1");
+
+    // 写法1
+    let syObject = {};
+    syObject[sy2] = "kk";
+    console.log(syObject);    // {Symbol(key1): "kk"}
+
+    // 写法2
+    let syObject2 = {
+      [sy2]: "kk"
+    };
+    console.log(syObject2);    // {Symbol(key1): "kk"}
+
+    // 写法3
+    let syObject3 = {};
+    Object.defineProperty(syObject3, sy2, { value: "kk" });
+    console.log(syObject3);   // {Symbol(key1): "kk"}
+/***-----------------------------------------------------------------------------***/
+  </script>
+</body>
+
+</html>

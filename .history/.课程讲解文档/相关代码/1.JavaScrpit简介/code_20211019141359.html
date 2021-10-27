@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>1.JavaScrpit简介</title>
+  <meta charset="utf-8">
+  <script type="text/javascript" src="https://cn.vuejs.org/js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <child-component ref="child"></child-component>
+  </div>
+  <script type="text/javascript">
+    /***-----------------------------------------------------------------------------***/
+    /**
+     *  1、 基本用法
+     * */
+
+
+    // let sy = Symbol("KK");
+    // console.log(sy);   // Symbol(KK)
+    // typeof (sy);        // "symbol"
+    // console.log(typeof (sy));
+
+    // // 相同参数 Symbol() 返回的值不相等
+    // let sy1 = Symbol("kk");
+    // sy === sy1;       // false
+
+    /***-----------------------------------------------------------------------------***/
+
+
+    /**
+     * 2、使用场景
+    */
+    //   作为属性名
+
+    let sy2 = Symbol("key***");
+
+    // 写法1
+    let syObject = {};
+    syObject[sy2] = "kk1";
+    console.log(syObject);    // {Symbol(key1): "kk"}
+
+    // 写法2
+    let syObject2 = {
+      [sy2]: "kk2"
+    };
+    console.log(syObject2);    // {Symbol(key1): "kk"}
+
+    // 写法3
+    let syObject3 = {};
+    Object.defineProperty(syObject3, sy2, { value: "kk3" });
+    console.log(syObject3);   // {Symbol(key1): "kk"}
+    /***-----------------------------------------------------------------------------***/
+    // 注释： Symbole 作为对象属性名时不能用用.运算符，要用方括号。因为，运算符后面是字符串吗所以取到的字符串
+    // sy 属性，而不是Symbol 值sy属性
+
+    let syObject4 = {};
+    syObject4[sy2] = "kk楚河";
+
+    syObject4[sy2];  // "kk"
+    syObject4.sy2;   // undefined
+    console.log(syObject4[sy2]);
+    console.log(syObject4.sy2);
+/**
+     *
+    */
+   /**
+    * 
+   */
+   ar shapeType = { triangle: 'Triangle'};
+function getArea(shape, options) { 
+    var area = 0; 
+    switch (shape) { 
+      case shapeType.triangle:
+      area = .5 * options.width * options.height; 
+      break; 
+    } 
+    return area;
+}
+
+getArea(shapeType.triangle, { width: 100, height: 100 });
+  </script>
+</body>
+
+</html>

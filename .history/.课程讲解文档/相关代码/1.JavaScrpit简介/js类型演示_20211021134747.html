@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+
+<body>
+  <script>
+
+
+    // TODO:  申明变量 
+    var a;
+    var b = 10;
+    b = 'Hello World'
+    console.log(a);
+
+    //
+    function getVowels(str) {
+      const m = str.match(/[aeiou]/gi);
+      if (m === null) {
+        return 0
+      }
+      return m.length
+    }
+
+    console.log(getVowels('skyae'));
+
+    //
+
+    var obj = {}
+    var student = {
+      name: 'zhangsan',
+      age: 14,
+      say: function () {
+        console.log(this.name);
+      }
+    }
+    new String()
+    new Boolean()
+    new Number()
+    console.log(new String(),
+      new Boolean(),
+      new Number());
+  </script>
+</body>
+
+</html>
